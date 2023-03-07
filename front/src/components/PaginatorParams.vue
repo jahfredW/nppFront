@@ -12,8 +12,8 @@
         </v-row>
         </div>
         <div class="btn-wrapper d-flex justify-content-around">
-            <button type="button" class="btn bg-purple-lighteen-5" :disabled="prevDisabled" @click="changePage(-1)"> Prev</button>
-            <button type="button" class="btn" :disabled="nextDisabled" @click="changePage(1)">Next </button>
+            <div class="btn bg-purple-lighteen-5" :disabled="prevDisabled" @click="changePage(-1)"> Prev</div>
+            <div class="btn" :disabled="nextDisabled" @click="changePage(1)">Next </div>
         </div>  
     </v-container>
 </template>
@@ -105,11 +105,9 @@ export default{
         
     },
 
-    // mounted(){
-    //     this.getFilms();
-    //     const path = document.querySelector('path');
-    //     console.log(path.getTotalLength());
-    // },
+    mounted(){
+        this.getFilms();
+    },
 
 
 }

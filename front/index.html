@@ -16,38 +16,13 @@
     
 </head>
 
+
 <body>
-    <div id="app" v-cloak></div>
-    <div class="loading text-center">
-        <div><i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i></div>
-        <p class="mt-3">Veuillez patientez</p>
-    </div>
+    <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
-    
 </body>
 
 </html>
 
 
-<style>
 
-[v-cloak] {
-  display: none;
-}
-
-.loading {
-  display: grid;
-  place-content: center;
-  background: rgba(0, 0, 0, 0.3);
-  z-index: 999;
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-}
-
-#app:not([v-cloak]) ~ .loading {
-  display: none;
-}
-</style>

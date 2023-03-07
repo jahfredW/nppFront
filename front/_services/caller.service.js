@@ -11,7 +11,7 @@ const Axios = axios.create({
     // baseURL: 'https://fredgruwedev.com'
     baseURL : 'https://localhost:8000',
     // headers: {'X-Custom-Header': 'foobar'},
-    withCredentials: true,
+    withCredentials: false,
 })
 
 axios.defaults.headers["content-type"] = "application/json";

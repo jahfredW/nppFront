@@ -2,7 +2,6 @@
 
 
 
-
 #app {
   max-width: 1280px;
   margin: 0 auto;
@@ -10,6 +9,28 @@
 
   font-weight: normal;
 }
+
+[v-cloak] {
+  display: none;
+}
+
+.loading {
+  display: grid;
+  place-content: center;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+#inspire:not([v-cloak]) ~ .loading {
+display: none;
+}
+
+
 
 a,
 .green {

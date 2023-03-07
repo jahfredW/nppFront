@@ -7,7 +7,7 @@ import VueJwtDecode from 'jwt-decode';
 export const getTokenStore = defineStore('getToken', {
   state: () => ({
     token : '',
-    email : '',
+    pseudo : '',
     sta : false,
   }),
 
@@ -18,10 +18,10 @@ export const getTokenStore = defineStore('getToken', {
 
   actions: {
     decodeToken(token) {
-       return VueJwtDecode(token).username;
+       return VueJwtDecode(token).pseudo;
     },
 
-    setEmail(email){
-        this.email = email;
+    setPseudo(pseudo){
+        this.pseudo = pseudo;
     }
   }});

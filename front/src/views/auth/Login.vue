@@ -1,5 +1,5 @@
 <template>
-    <v-container class="container mt-15 px-10 py-10">
+    <v-container class="container_login mt-15 px-10 py-10">
       <v-row class="mb-10">
         <v-col cols="12"  xs="12" sm="12" md="8" lg="8"  class="mx-auto text-center">
           <div class="text-h4">Formulaire de connexion</div>
@@ -171,7 +171,7 @@
   
   <style>
   
-  .container {
+  .container_login {
     position: relative;
     background: white;
     border-radius: 45px;
@@ -181,7 +181,7 @@
     transition: box-shadow 2s, transform 0.5s, background-color 1.5s;
   }
   
-  .container:hover {
+  .container_login:hover {
     box-shadow: 0 5px 35px 0px rgba(0,0,0,.1);
     background-color: rgb(232, 238, 240);
     transform: scale(1.05);
@@ -193,7 +193,7 @@
   
   @media only screen and (max-width: 500px) {
     
-    .container{
+    .container_login{
       border-radius: 10% 10%;
       width: 80%;
     }
