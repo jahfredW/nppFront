@@ -2,8 +2,8 @@
 import Axios from './caller.service.js'
 
 
-let addPhotos = (credentials) => {
-    return Axios.post('upload_images', credentials)
+let uploadPictures = (credentials) => {
+    return Axios.post('api/upload', credentials)
 }
 
 let addUser = (credentials) => {
@@ -52,6 +52,7 @@ export const accountService = {
     // isLogged,
     // getToken,
     signup, 
-    addPhotos
+    uploadPictures,
+
     // addUser,
 }
