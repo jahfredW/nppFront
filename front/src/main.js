@@ -5,6 +5,9 @@ import vuetify from './plugins/vuetify'
 import { loadFonts } from './plugins/webfontloader'
 import './../node_modules/bulma/css/bulma.css';
 import { createPinia } from 'pinia'
+// import { LoadingDirective } from './directives'
+// import { LoadingMixin } from './mixins'
+import { Loader } from './components'
 
 // import { library } from '@fortawesome/fontawesome-svg-core';
 // import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
@@ -15,12 +18,24 @@ import { createPinia } from 'pinia'
 loadFonts()
  const pinia = createPinia();
 
-createApp(App)
+const app = createApp(App)
   .use(router)
   .use(pinia)
   .use(vuetify)
+  // .component('Loader', Loader)
+  // .mixin(LoadingMixin)
+  // .directive("loading", LoadingDirective);
+  
   // .component('font-awesome-icon', FontAwesomeIcon)
-  .mount('#app')
+
+app.mount('#app')
+
+
+
+  
+
+ 
+
 
 
 

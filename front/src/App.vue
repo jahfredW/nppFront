@@ -1,17 +1,17 @@
 <template >
   <v-app id="inspire">
     <v-navigation-drawer v-model="drawer">
-      <!--  -->
     </v-navigation-drawer>
-
     <v-app-bar>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-
-      <!-- <v-toolbar-title v-if="this.token != null">Bienvenue  : {{ this.email }}</v-toolbar-title> -->
       <v-toolbar-title >Bienvenue {{ pseudo }}</v-toolbar-title>
     </v-app-bar>
-    <v-main>
+    <v-main >
       <router-view/>
+      <div class="loading d-flex flex-column align-items-center" v-if="loading">
+        <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+      <p>Chargement</p>
+    </div>
     </v-main>
   </v-app>
 </template>
@@ -22,11 +22,14 @@
 
 // importation du magasin et des éléments de l'APi composition
 import { getTokenStore } from '@/stores/test.js'
-import { onBeforeMount, ref, onMounted, onUnmounted, onUpdated } from 'vue';
+import { ref } from 'vue';
+import Axios from '../_services/caller.service';
 
 // ref -> propriété réactive
 const pseudo = ref('');
 const drawer = ref(null);
+const loading = ref(false);
+
 
 
 // instanciation du magasin
@@ -49,20 +52,36 @@ pseudo.value = '';
 tokenStore.setPseudo('');
 }
 
-
-// onBeforeMount(() => {
-//   console.log(test.value)
-
-// })
+Axios.interceptors.request.use(
+    config =>  {
+      console.log('request')
+      // Afficher le loader global
+      loading.value = true;
+      return config;
+    },
+    function (error) {
+        console.log('erreur')
+      return Promise.reject(error);
+    }
+  );
+  
+  Axios.interceptors.response.use(
+    function (response) {
+      // Cacher le loader global
+      loading.value = false;
+      return response;
+    },
+    function (error) {
+      // Cacher le loader global
+      loading.value = false;
+      return Promise.reject(error);
+    }
+  );
 
 
 </script>
 
-<!-- <style>
-[v-cloak] {
-  display: none;
-  content: "hello world";
-}
+<style>
 
 .loading {
   display: grid;
@@ -76,7 +95,11 @@ tokenStore.setPseudo('');
   right: 0;
 }
 
-#inspire:not([v-cloak]) ~ .loading {
-display: none;
-}
-</style> -->
+</style>
+
+
+
+
+
+
+

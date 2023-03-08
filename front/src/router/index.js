@@ -1,7 +1,7 @@
 // import { AppVue } from '../views/public/index';
 import { LayoutVue, FilmsVue, SignupVue, HomeView } from '../views/public/index';
 import { LoginVue } from '../views/auth/index';
-import { AdminDashboard, UploadPhotos } from '../views/admin';
+import { AdminDashboard, UploadPictures } from '../views/admin';
 
 // import AboutVue from '../components/About.Vue';
 
@@ -31,7 +31,7 @@ const routes = [
         path: '/admin',
         name: 'admin',
         children : [
-            { path: 'add-photos', name: 'add-photos', component: UploadPhotos },
+            { path: 'uploadPictures', name: 'upload-pictures', component: UploadPictures },
             { path: 'dashboard', name: 'dashboard', component: AdminDashboard },
 
         ]
@@ -45,6 +45,11 @@ const router = new createRouter({
     routes,
 });
 
+
+router.beforeEach( (to, from, next) => {
+    console.log(to.matched[0].name)
+    next();
+  })
 
 
 export default router;

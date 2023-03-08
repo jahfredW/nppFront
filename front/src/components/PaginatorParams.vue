@@ -12,8 +12,8 @@
         </v-row>
         </div>
         <div class="btn-wrapper d-flex justify-content-around">
-            <div class="btn bg-purple-lighteen-5" :disabled="prevDisabled" @click="changePage(-1)"> Prev</div>
-            <div class="btn" :disabled="nextDisabled" @click="changePage(1)">Next </div>
+            <button class="btn bg-purple-lighteen-5" :disabled="prevDisabled" @click="changePage(-1)"> Prev</button>
+            <button class="btn" :disabled="nextDisabled" @click="changePage(1)">Next </button>
         </div>  
     </v-container>
 </template>
@@ -22,8 +22,7 @@
 
 // import { defineComponent } from "vue";
 import FilmCard from './FilmCard.vue'
-
-import axios from "axios";
+import { FilmService } from '../../_services/film.service';
 
 
 
@@ -37,6 +36,7 @@ export default{
 
     data() {
         return {
+            lastPage: 0,
             perPage: 5,
             currentPage: 1,
             filmList: [],
@@ -45,16 +45,25 @@ export default{
 
     methods: {
 
+        countAllFilms() {
+            FilmService.countAllFilm()
+            .then((res) => {
+                this.lastPage = res.data;
+                console.log(this.lastPage)
+;            })
+
+            .catch( (err) => {
+                console.log(err)
+            })
+        },
+
         getFilms(){
-            const Axios = axios.create({
-                baseURL: 'https://127.0.0.1:8000'
-            });
-            const params = {
+            let params = {
                 'page': this.currentPage,
                 'limit': this.perPage
             }
 
-            Axios.get('api/films', { params })
+            FilmService.getFilmList({ params })
             .then((res) => {
                 console.log(res);
                 this.filmList = [];
@@ -71,10 +80,19 @@ export default{
 
 
         changePage(num){
+          
+            console.log(this.filmList.length);
             console.log('num', num);
-            console.log('currentPage', this.currentPage),
-            this.currentPage = this.currentPage + num;
+            console.log('currentPage', this.currentPage);
+            if(this.currentPage < 1){
+                this.currentPage = 1;
+            } else if (this.currentPage > this.lastPage){
+                this.currentPage = this.lastPage;
+            } else {
+                this.currentPage = this.currentPage + num;
+            }
             this.getFilms();
+            
         },
 
         
@@ -95,8 +113,8 @@ export default{
         },
 
         nextDisabled(){
-            console.log('ici');
-            return this.filmList.length === 0;
+            return this.currentPage === this.lastPage;
+           
         },
 
         prevDisabled(){
@@ -106,7 +124,9 @@ export default{
     },
 
     mounted(){
+        this.countAllFilms();
         this.getFilms();
+        console.log(this.lastPage)
     },
 
 
