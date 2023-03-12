@@ -3,7 +3,7 @@ import Axios from './caller.service.js'
 
 
 let uploadPictures = (credentials) => {
-    return Axios.post('api/upload', credentials)
+    return Axios.post('api/cloudgoogle', credentials)
 }
 
 let addUser = (credentials) => {

@@ -782,7 +782,7 @@
 
 "blob-util@^2.0.2":
   "integrity" "sha512-T7JQa+zsXXEa6/8ZhHcQEW1UFfVM49Ts65uBkFL6fz2QmrElqmbajIDJvuA0tEhRe5eIjpV9ZF+0RfZR9voJFQ=="
-  "resolved" "https://registry.npmmirror.com/blob-util/-/blob-util-2.0.2.tgz"
+  "resolved" "https://registry.npmjs.org/blob-util/-/blob-util-2.0.2.tgz"
   "version" "2.0.2"
 
 "bluebird@^3.7.2", "bluebird@3.7.2":

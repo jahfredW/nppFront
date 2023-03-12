@@ -31,7 +31,6 @@ export default {
     // méthode qui permet d'uploader les fichiers 
     uploadFiles(){
       // définition de l'autorisation d'envoie à true
-      let sendOk = true;
       let successUpload = [];
       let failureUpload = [];
       // tableau contenant les extensions possibles 
@@ -49,52 +48,44 @@ export default {
           let extension = splitImage[splitImage.length - 1];
           // Si l'image a un point mais que la dernier élément du split n'appartient pas à la liste des extensions, on refuse l'envoie. 
           if (!extension_tab.includes(extension)){
-            alert('Au moins une image contient uen extension inconnue')
-            sendOk = false;
+            alert('Au moins une image contient une extension inconnue')
             failureUpload.push(image);
-            // break;
           }
 
-          if (imageSize > 2000000){
+          if (imageSize > 20000000){
             alert(`Désolé, mais l\'image ${image.name} dépasse la taille autorisée `)
-            sendOk = false;
             failureUpload.push(image);
-            break;
           }
           
           
         }
         // Si l'image name ne contient aucun point, alors le format est inconnu, on refuse l'envoie
         catch {
-          alert("format inconnu")
-          failureUpload.push(image);
-          sendOk = false;
-          break;
+          alert("erreur inconnue, merci de recommencer")
         }
       
-        successUpload.push(image);
+      successUpload.push(image);
       }
-      console.log(successUpload);
-      console.log(failureUpload);
       // Si le conteneur d'image est vide ou si l'autorisation d'envoie n'est pas accordée
       // on alerte l'utlisateur 
-      if (this.files.length === 0  || !sendOk){
+      if (successUpload.length === 0){
         alert("aucune image à envoyer ou extension invalide");
         // sinon on construit l'objet formData avec les uploads et on envoie sur le backend. 
       } else {
-        for (let i = 0; i < this.files.length; i++) {
-          formData.append('files[]', this.files[i]);
+        for (let i = 0; i < successUpload.length; i++) {
+          formData.append('files[]', successUpload[i]);
           
         }
         accountService.uploadPictures(formData)
         .then(
           response => {
             this.files = [];
+            alert(response.data);
             this.$router.go(0);
-            alert('Les fichiers ont été uploadés avec succès')
-        })
+          })
         .catch(
           error => {
+            console.log(error);
           alert('Une erreur est survenue durant l\'envoie des fichiers')
         });
       }

@@ -1,5 +1,5 @@
 // import { AppVue } from '../views/public/index';
-import { LayoutVue, FilmsVue, SignupVue, HomeView } from '../views/public/index';
+import { LayoutVue, FilmsVue, SignupVue, HomeView, DownloadVue, DownloadBlob } from '../views/public/index';
 import { LoginVue } from '../views/auth/index';
 import { AdminDashboard, UploadPictures } from '../views/admin';
 
@@ -18,6 +18,8 @@ const routes = [
             { path: '/', name: 'homeView', component: HomeView },
             { path: '/films', name: 'filmsView', component: FilmsVue },
             { path: '/signup', name: 'signup', component: SignupVue },
+            { path: '/download', name: 'download', component: DownloadVue },
+            { path: '/downloadBlob', name: 'downloadBlob', component: DownloadBlob },
             ]
     },
     {
