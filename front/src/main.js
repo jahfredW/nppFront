@@ -5,6 +5,9 @@ import vuetify from './plugins/vuetify'
 import { loadFonts } from './plugins/webfontloader'
 import './../node_modules/bulma/css/bulma.css';
 import { createPinia } from 'pinia'
+import VueDatePicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css'
+
 // import { LoadingDirective } from './directives'
 // import { LoadingMixin } from './mixins'
 import { Loader } from './components'
@@ -22,6 +25,8 @@ const app = createApp(App)
   .use(router)
   .use(pinia)
   .use(vuetify)
+  .component('VueDatePicker', VueDatePicker);
+  
   // .component('Loader', Loader)
   // .mixin(LoadingMixin)
   // .directive("loading", LoadingDirective);

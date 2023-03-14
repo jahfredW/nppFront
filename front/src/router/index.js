@@ -1,7 +1,7 @@
 // import { AppVue } from '../views/public/index';
 import { LayoutVue, FilmsVue, SignupVue, HomeView, DownloadVue, DownloadBlob } from '../views/public/index';
 import { LoginVue } from '../views/auth/index';
-import { AdminDashboard, UploadPictures } from '../views/admin';
+import { AdminDashboard, UploadPictures, UploadPicturesTest } from '../views/admin';
 
 // import AboutVue from '../components/About.Vue';
 
@@ -35,6 +35,7 @@ const routes = [
         children : [
             { path: 'uploadPictures', name: 'upload-pictures', component: UploadPictures },
             { path: 'dashboard', name: 'dashboard', component: AdminDashboard },
+            { path: 'uploadPicturesTest', name: 'uplaodPicturesTest', component: UploadPicturesTest },
 
         ]
     },
